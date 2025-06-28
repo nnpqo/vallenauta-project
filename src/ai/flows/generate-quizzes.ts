@@ -2,11 +2,11 @@
 'use server';
 
 /**
- * @fileOverview A flow to generate quizzes from a given book text.
+ * @fileOverview Un flujo para generar cuestionarios a partir de un texto de libro dado.
  *
- * - generateQuizzes - A function that generates quizzes based on the book content.
- * - GenerateQuizzesInput - The input type for the generateQuizzes function.
- * - GenerateQuizzesOutput - The return type for the generateQuizzes function.
+ * - generateQuizzes - Una función que genera cuestionarios basados en el contenido del libro.
+ * - GenerateQuizzesInput - El tipo de entrada para la función generateQuizzes.
+ * - GenerateQuizzesOutput - El tipo de retorno para la función generateQuizzes.
  */
 
 import {ai} from '@/ai/genkit';
@@ -15,16 +15,16 @@ import {z} from 'genkit';
 const GenerateQuizzesInputSchema = z.object({
   bookContent: z
     .string()
-    .describe('The content of the book from which to generate quizzes.'),
+    .describe('El contenido del libro a partir del cual generar los cuestionarios.'),
   topic: z
     .string()
     .optional()
-    .describe('Optional topic to generate questions about')
+    .describe('Tema opcional sobre el cual generar preguntas')
 });
 export type GenerateQuizzesInput = z.infer<typeof GenerateQuizzesInputSchema>;
 
 const GenerateQuizzesOutputSchema = z.object({
-  quizzes: z.array(z.string()).describe('An array of quizzes generated from the book content.'),
+  quizzes: z.array(z.string()).describe('Un array de cuestionarios generados a partir del contenido del libro.'),
 });
 export type GenerateQuizzesOutput = z.infer<typeof GenerateQuizzesOutputSchema>;
 
@@ -36,13 +36,13 @@ const prompt = ai.definePrompt({
   name: 'generateQuizzesPrompt',
   input: {schema: GenerateQuizzesInputSchema},
   output: {schema: GenerateQuizzesOutputSchema},
-  prompt: `You are an expert in creating quizzes based on book content.
+  prompt: `Eres un experto en crear cuestionarios basados en el contenido de un libro.
 
-  Generate a list of quizzes from the following book content:
+  Genera una lista de cuestionarios a partir del siguiente contenido del libro:
 
-  Book Content: {{{bookContent}}}
+  Contenido del libro: {{{bookContent}}}
 
-  Each quiz should be a question about the book content. The topic is {{{topic}}}. Return the quizzes as a JSON array of strings.`, 
+  Cada cuestionario debe ser una pregunta sobre el contenido del libro. El tema es {{{topic}}}. Devuelve los cuestionarios como un array JSON de cadenas.`, 
 });
 
 const generateQuizzesFlow = ai.defineFlow(

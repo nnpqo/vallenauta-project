@@ -13,7 +13,7 @@ export async function getAnswerForBook(bookContent: string, question: string) {
     console.error('Error answering book question:', error);
     return {
       success: false,
-      error: 'Sorry, I had trouble finding an answer. Please try again.',
+      error: 'Lo siento, tuve problemas para encontrar una respuesta. Por favor, inténtalo de nuevo.',
     };
   }
 }
@@ -26,7 +26,7 @@ export async function getQuizQuestions(bookContent: string, topic?: string) {
     console.error('Error generating quiz:', error);
     return {
       success: false,
-      error: 'Sorry, I had trouble creating a quiz. Please try again.',
+      error: 'Lo siento, tuve problemas para crear un cuestionario. Por favor, inténtalo de nuevo.',
     };
   }
 }
@@ -39,7 +39,7 @@ export async function getRecommendations(readingHistory: string) {
     console.error('Error getting recommendations:', error);
     return {
       success: false,
-      error: 'Sorry, I had trouble finding recommendations. Please try again.',
+      error: 'Lo siento, tuve problemas para encontrar recomendaciones. Por favor, inténtalo de nuevo.',
     };
   }
 }

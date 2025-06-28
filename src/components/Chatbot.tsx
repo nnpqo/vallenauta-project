@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect, useContext } from 'react';
@@ -41,7 +42,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
     {
       id: 1,
       role: 'assistant',
-      content: `Hello! I'm your AI reading assistant for "${bookTitle}". Ask me anything about the book, or ask for a quiz!`,
+      content: `¡Hola! Soy tu asistente de lectura con IA para "${bookTitle}". ¡Pregúntame cualquier cosa sobre el libro o pídeme un cuestionario!`,
     },
   ]);
   const [input, setInput] = useState('');
@@ -99,7 +100,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
       {
         id: Date.now(),
         role: 'system',
-        content: 'Generating a quiz question for you...',
+        content: 'Generando una pregunta de cuestionario para ti...',
       },
     ]);
 
@@ -120,7 +121,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
               setIsLoading(false);
               rewards?.addPoints(10);
               rewards?.addBadge(firstQuizBadge);
-              return answerResult.answer || 'Could not find an answer.';
+              return answerResult.answer || 'No se pudo encontrar una respuesta.';
             }}
           />
         ),
@@ -128,7 +129,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
       setMessages((prev) => [...prev, quizMessage]);
     } else {
       setMessages((prev) =>
-        prev.filter((m) => m.content !== 'Generating a quiz question for you...')
+        prev.filter((m) => m.content !== 'Generando una pregunta de cuestionario para ti...')
       );
       toast({
         variant: 'destructive',
@@ -182,7 +183,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
                 <Loader2 className="h-5 w-5 animate-spin" />
               </div>
               <div className="max-w-md rounded-lg bg-secondary px-4 py-2">
-                Thinking...
+                Pensando...
               </div>
             </div>
           )}
@@ -196,14 +197,14 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
             disabled={isLoading}
           >
             <Sparkles className="mr-2 h-4 w-4" />
-            Quiz Me
+            Ponme a Prueba
           </Button>
         </div>
         <form onSubmit={handleSendMessage} className="flex gap-2">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question about the book..."
+            placeholder="Haz una pregunta sobre el libro..."
             disabled={isLoading}
           />
           <Button type="submit" disabled={isLoading}>
@@ -234,16 +235,16 @@ function QuizCard({
   return (
     <Card className="border-primary border-2">
       <CardContent className="p-4">
-        <p className="font-bold mb-2">Quiz Time!</p>
+        <p className="font-bold mb-2">¡Hora del Cuestionario!</p>
         <p className="mb-4">{question}</p>
         {!isRevealed ? (
           <Button onClick={handleReveal}>
             <Award className="mr-2 h-4 w-4" />
-            Reveal Answer & Get 10 Points
+            Revelar Respuesta y Obtener 10 Puntos
           </Button>
         ) : (
           <div className="mt-4 rounded-md border bg-background p-3 text-sm">
-            <p className="font-semibold text-primary">Answer:</p>
+            <p className="font-semibold text-primary">Respuesta:</p>
             <p>{answer}</p>
           </div>
         )}

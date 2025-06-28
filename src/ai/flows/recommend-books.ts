@@ -1,11 +1,11 @@
 // src/ai/flows/recommend-books.ts
 'use server';
 /**
- * @fileOverview A flow that recommends books based on the user's reading history.
+ * @fileOverview Un flujo que recomienda libros basado en el historial de lectura del usuario.
  *
- * - recommendBooks - A function that handles the book recommendation process.
- * - RecommendBooksInput - The input type for the recommendBooks function.
- * - RecommendBooksOutput - The return type for the recommendBooks function.
+ * - recommendBooks - Una función que maneja el proceso de recomendación de libros.
+ * - RecommendBooksInput - El tipo de entrada para la función recommendBooks.
+ * - RecommendBooksOutput - El tipo de retorno para la función recommendBooks.
  */
 
 import {ai} from '@/ai/genkit';
@@ -14,14 +14,14 @@ import {z} from 'genkit';
 const RecommendBooksInputSchema = z.object({
   readingHistory: z
     .string()
-    .describe('A list of books the user has read, with titles and authors.'),
+    .describe('Una lista de libros que el usuario ha leído, con títulos y autores.'),
 });
 export type RecommendBooksInput = z.infer<typeof RecommendBooksInputSchema>;
 
 const RecommendBooksOutputSchema = z.object({
   recommendations: z
     .string()
-    .describe('A list of recommended books based on the reading history.'),
+    .describe('Una lista de libros recomendados basada en el historial de lectura.'),
 });
 export type RecommendBooksOutput = z.infer<typeof RecommendBooksOutputSchema>;
 
@@ -33,11 +33,11 @@ const prompt = ai.definePrompt({
   name: 'recommendBooksPrompt',
   input: {schema: RecommendBooksInputSchema},
   output: {schema: RecommendBooksOutputSchema},
-  prompt: `Based on the user's reading history, recommend some books they might enjoy.
+  prompt: `Basado en el historial de lectura del usuario, recomienda algunos libros que podría disfrutar.
 
-Reading History: {{{readingHistory}}}
+Historial de lectura: {{{readingHistory}}}
 
-Recommendations:`, 
+Recomendaciones:`, 
 });
 
 const recommendBooksFlow = ai.defineFlow(

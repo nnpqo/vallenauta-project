@@ -3,24 +3,24 @@
 'use server';
 
 /**
- * @fileOverview Provides a Genkit flow for answering user questions about a book's content.
+ * @fileOverview Proporciona un flujo de Genkit para responder preguntas de los usuarios sobre el contenido de un libro.
  *
- * - bookQuestionAnswering - A function that accepts a book's content and a question, then returns an answer to the question based on the book's content.
- * - BookQuestionAnsweringInput - The input type for the bookQuestionAnswering function.
- * - BookQuestionAnsweringOutput - The return type for the bookQuestionAnswering function.
+ * - bookQuestionAnswering - Una función que acepta el contenido de un libro y una pregunta, y luego devuelve una respuesta a la pregunta basada en el contenido del libro.
+ * - BookQuestionAnsweringInput - El tipo de entrada para la función bookQuestionAnswering.
+ * - BookQuestionAnsweringOutput - El tipo de retorno para la función bookQuestionAnswering.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const BookQuestionAnsweringInputSchema = z.object({
-  bookContent: z.string().describe('The content of the book.'),
-  question: z.string().describe('The question to be answered based on the book content.'),
+  bookContent: z.string().describe('El contenido del libro.'),
+  question: z.string().describe('La pregunta a ser respondida basada en el contenido del libro.'),
 });
 export type BookQuestionAnsweringInput = z.infer<typeof BookQuestionAnsweringInputSchema>;
 
 const BookQuestionAnsweringOutputSchema = z.object({
-  answer: z.string().describe('The answer to the question based on the book content.'),
+  answer: z.string().describe('La respuesta a la pregunta basada en el contenido del libro.'),
 });
 export type BookQuestionAnsweringOutput = z.infer<typeof BookQuestionAnsweringOutputSchema>;
 
@@ -32,7 +32,7 @@ const prompt = ai.definePrompt({
   name: 'bookQuestionAnsweringPrompt',
   input: {schema: BookQuestionAnsweringInputSchema},
   output: {schema: BookQuestionAnsweringOutputSchema},
-  prompt: `You are a helpful AI assistant that answers questions based on the provided book content.\n\nBook Content:\n{{bookContent}}\n\nQuestion: {{question}}\n\nAnswer: `,
+  prompt: `Eres un asistente de IA útil que responde preguntas basadas en el contenido del libro proporcionado.\n\nContenido del libro:\n{{bookContent}}\n\nPregunta: {{question}}\n\nRespuesta: `,
 });
 
 const bookQuestionAnsweringFlow = ai.defineFlow(

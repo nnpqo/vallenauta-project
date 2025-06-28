@@ -16,7 +16,7 @@ export default function BookRecommendations() {
   useEffect(() => {
     async function fetchRecommendations() {
       // In a real app, this would come from the user's actual reading history
-      const readingHistory = 'Pride and Prejudice, The Great Gatsby';
+      const readingHistory = 'Orgullo y Prejuicio, El Gran Gatsby';
       const result = await getRecommendations(readingHistory);
 
       if (result.success && result.recommendations) {
@@ -26,7 +26,7 @@ export default function BookRecommendations() {
           .filter(Boolean);
         setRecommendations(parsedRecommendations);
       } else {
-        setError(result.error || 'Failed to fetch recommendations.');
+        setError(result.error || 'No se pudieron obtener las recomendaciones.');
       }
       setIsLoading(false);
     }
@@ -37,7 +37,7 @@ export default function BookRecommendations() {
   return (
     <div>
       <h2 className="font-headline text-3xl font-bold mb-6 border-b pb-2">
-        Recommended For You
+        Recomendado Para Ti
       </h2>
       <Card className="bg-secondary/50 border-dashed">
         <CardContent className="p-6">
