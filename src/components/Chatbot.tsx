@@ -33,7 +33,7 @@ interface Message {
 
 const firstQuizBadge: Badge = {
   id: 'first-quiz',
-  name: 'Quiz Novice',
+  name: 'Novato de Cuestionarios',
   icon: BookCheck,
 };
 

@@ -22,12 +22,12 @@ export function AppHeader() {
             <Button variant="ghost" asChild>
               <Link href="/my-library">
                 <Library className="h-5 w-5" />
-                <span className="hidden sm:inline-block ml-2">My Library</span>
+                <span className="hidden sm:inline-block ml-2">Mi Biblioteca</span>
               </Link>
             </Button>
             <div className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium">
               <Award className="h-5 w-5 text-accent" />
-              <span>{rewards?.score ?? 0} Points</span>
+              <span>{rewards?.score ?? 0} Puntos</span>
             </div>
           </nav>
         </div>

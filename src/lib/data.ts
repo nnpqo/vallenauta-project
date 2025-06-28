@@ -3,30 +3,30 @@ import type { Book } from './types';
 
 export const books: Book[] = [
   {
-    id: 'pride-and-prejudice',
-    title: 'Pride and Prejudice',
+    id: 'orgullo-y-prejuicio',
+    title: 'Orgullo y Prejuicio',
     author: 'Jane Austen',
     coverImage: 'https://placehold.co/400x600.png',
-    coverImageHint: 'classic novel cover',
-    content: `It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.
+    coverImageHint: 'novela clasica portada',
+    content: `Es una verdad universalmente reconocida que un hombre soltero en posesión de una buena fortuna debe necesitar una esposa.
 
-However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.
+Por poco conocidos que sean los sentimientos o puntos de vista de tal hombre a su primera entrada en un vecindario, esta verdad está tan bien fijada en las mentes de las familias circundantes, que se le considera propiedad legítima de una u otra de sus hijas.
 
-“My dear Mr. Bennet,” said his lady to him one day, “have you heard that Netherfield Park is let at last?”
+"Mi querido Sr. Bennet", le dijo su dama un día, "¿ha oído que Netherfield Park se alquila por fin?"
 
-Mr. Bennet replied that he had not.
+El Sr. Bennet respondió que no.
 
-“But it is,” returned she; “for Mrs. Long has just been here, and she told me all about it.”
+"Pero sí", replicó ella; "porque la Sra. Long acaba de estar aquí y me lo ha contado todo".
 
-Mr. Bennet made no answer.
+El Sr. Bennet no respondió.
 
-“Do you not want to know who has taken it?” cried his wife impatiently.
+"¿No quieres saber quién lo ha tomado?", gritó su esposa con impaciencia.
 
-“You want to tell me, and I have no objection to hearing it.”
+"Tú quieres decírmelo y no tengo ninguna objeción en oírlo".
 
-This was invitation enough.
+Esta fue suficiente invitación.
 
-“Why, my dear, you must know, Mrs. Long says that Netherfield is taken by a young man of large fortune from the north of England; that he came down on Monday in a chaise and four to see the place, and was so much delighted with it, that he agreed with Mr. Morris immediately; that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week.”`,
+"Pues, querido, debes saber que la Sra. Long dice que Netherfield ha sido tomado por un joven de gran fortuna del norte de Inglaterra; que bajó el lunes en un carruaje de cuatro para ver el lugar, y quedó tan encantado con él que se puso de acuerdo con el Sr. Morris inmediatamente; que tomará posesión antes de Michaelmas, y algunos de sus sirvientes estarán en la casa para finales de la próxima semana."`,
     inLibrary: true,
   },
   {
@@ -34,32 +34,32 @@ This was invitation enough.
     title: 'Moby Dick',
     author: 'Herman Melville',
     coverImage: 'https://placehold.co/400x600.png',
-    coverImageHint: 'whale ocean',
-    content: `Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.`,
+    coverImageHint: 'ballena oceano',
+    content: `Llamadme Ismael. Hace unos años —no importa cuánto tiempo exactamente— con poco o nada de dinero en mi bolsillo, y nada en particular que me interesara en tierra, pensé en navegar un poco y ver la parte acuática del mundo. Es una forma que tengo de ahuyentar la melancolía y regular la circulación. Cada vez que me encuentro con el ceño fruncido; cada vez que es un noviembre húmedo y lluvioso en mi alma; cada vez que me encuentro deteniéndome involuntariamente ante los almacenes de ataúdes y siguiendo cada funeral que encuentro; y especialmente cada vez que mis hipocondrías se apoderan de mí de tal manera que se requiere un fuerte principio moral para evitar que salga deliberadamente a la calle y le quite el sombrero a la gente metódicamente—entonces, considero que es hora de hacerme a la mar tan pronto como pueda. Este es mi sustituto de la pistola y la bala. Con un floreo filosófico, Catón se arroja sobre su espada; yo, tranquilamente, me embarco. No hay nada sorprendente en esto. Si tan solo lo supieran, casi todos los hombres, en su medida, alguna vez, albergan sentimientos muy parecidos a los míos hacia el océano.`,
     inLibrary: false,
   },
   {
-    id: 'the-great-gatsby',
-    title: 'The Great Gatsby',
+    id: 'el-gran-gatsby',
+    title: 'El Gran Gatsby',
     author: 'F. Scott Fitzgerald',
     coverImage: 'https://placehold.co/400x600.png',
-    coverImageHint: 'art deco party',
-    content: `In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since.
+    coverImageHint: 'fiesta art deco',
+    content: `En mis años más jóvenes y vulnerables, mi padre me dio un consejo que he estado repasando en mi mente desde entonces.
 
-“Whenever you feel like criticizing any one,” he told me, “just remember that all the people in this world haven’t had the advantages that you’ve had.”
+“Cada vez que sientas deseos de criticar a alguien”, me dijo, “recuerda que no todas las personas en este mundo han tenido las ventajas que tú has tenido.”
 
-He didn’t say any more, but we’ve always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence, I’m inclined to reserve all judgments, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores. The abnormal mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was privy to the secret griefs of wild, unknown men. Most of the confidences were unsought—frequently I have feigned sleep, preoccupation, or a hostile levity when I realized by some unmistakable sign that an intimate revelation was quivering on the horizon; for the intimate revelations of young men, or at least the terms in which they express them, are usually plagiaristic and marred by obvious suppressions.`,
+No dijo nada más, pero siempre hemos sido inusualmente comunicativos de una manera reservada, y entendí que quería decir mucho más que eso. En consecuencia, me inclino a reservar todos los juicios, un hábito que me ha abierto a muchas naturalezas curiosas y también me ha convertido en víctima de no pocos aburridos veteranos. La mente anormal es rápida para detectar y apegarse a esta cualidad cuando aparece en una persona normal, y así fue como en la universidad fui acusado injustamente de ser un político, porque estaba al tanto de las penas secretas de hombres salvajes y desconocidos. La mayoría de las confidencias no fueron buscadas—frecuentemente he fingido sueño, preocupación o una levedad hostil cuando me di cuenta por alguna señal inequívoca de que una revelación íntima se cernía en el horizonte; porque las revelaciones íntimas de los jóvenes, o al menos los términos en que las expresan, suelen ser plagios y están empañadas por supresiones evidentes.`,
     inLibrary: true,
   },
   {
-    id: 'a-tale-of-two-cities',
-    title: 'A Tale of Two Cities',
+    id: 'historia-de-dos-ciudades',
+    title: 'Historia de Dos Ciudades',
     author: 'Charles Dickens',
     coverImage: 'https://placehold.co/400x600.png',
-    coverImageHint: 'french revolution',
-    content: `It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way—in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.
+    coverImageHint: 'revolucion francesa',
+    content: `Era el mejor de los tiempos, era el peor de los tiempos, era la edad de la sabiduría, era la edad de la insensatez, era la época de la creencia, era la época de la incredulidad, era la estación de la Luz, era la estación de la Oscuridad, era la primavera de la esperanza, era el invierno de la desesperación, teníamos todo ante nosotros, no teníamos nada ante nosotros, íbamos todos directos al Cielo, íbamos todos directos en sentido contrario—en resumen, el período era tan parecido al período actual, que algunas de sus autoridades más ruidosas insistían en que se recibiera, para bien o para mal, solo en el grado superlativo de comparación.
 
-There were a king with a large jaw and a queen with a plain face, on the throne of England; there were a king with a large jaw and a queen with a fair face, on the throne of France. In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes, that things in general were settled for ever.`,
+Había un rey con una mandíbula grande y una reina con un rostro sencillo, en el trono de Inglaterra; había un rey con una mandíbula grande y una reina con un rostro hermoso, en el trono de Francia. En ambos países era más claro que el cristal para los señores de las reservas estatales de panes y peces, que las cosas en general estaban resueltas para siempre.`,
     inLibrary: false,
   },
   {
@@ -67,10 +67,10 @@ There were a king with a large jaw and a queen with a plain face, on the throne 
     title: 'Frankenstein',
     author: 'Mary Shelley',
     coverImage: 'https://placehold.co/400x600.png',
-    coverImageHint: 'monster lightning',
-    content: `You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings. I arrived here yesterday, and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking.
+    coverImageHint: 'monstruo relampago',
+    content: `Te alegrará saber que ningún desastre ha acompañado el comienzo de una empresa que has considerado con tan malos presagios. Llegué aquí ayer, y mi primera tarea es asegurar a mi querida hermana mi bienestar y mi creciente confianza en el éxito de mi empresa.
 
-I am already far north of London, and as I walk in the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks, which braces my nerves and fills me with delight. Do you understand this feeling? This breeze, which has travelled from the regions towards which I am advancing, gives me a foretaste of those icy climes. Inspirited by this wind of promise, my daydreams become more fervent and vivid. I try in vain to be persuaded that the pole is the seat of frost and desolation; it ever presents itself to my imagination as the region of beauty and delight.`,
+Ya estoy muy al norte de Londres, y mientras camino por las calles de Petersburgo, siento una fría brisa del norte jugar en mis mejillas, lo que fortalece mis nervios y me llena de deleite. ¿Entiendes este sentimiento? Esta brisa, que ha viajado desde las regiones hacia las que avanzo, me da un anticipo de esos climas helados. Animado por este viento de promesa, mis ensoñaciones se vuelven más fervientes y vívidas. Intento en vano persuadirme de que el polo es la sede de la escarcha y la desolación; siempre se presenta a mi imaginación como la región de la belleza y el deleite.`,
     inLibrary: false,
   },
 ];

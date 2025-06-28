@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -9,10 +10,10 @@ import { Chatbot } from './Chatbot';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetDescription,
 } from '@/components/ui/sheet';
 
 export function BookReader({ book }: { book: Book }) {
@@ -40,7 +41,7 @@ export function BookReader({ book }: { book: Book }) {
           <p className="text-lg text-muted-foreground">{book.author}</p>
           <div className="mt-4 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 w-1/2 md:w-1/3">
-              <span className="text-sm">Font Size</span>
+              <span className="text-sm">Tamaño de Fuente</span>
               <Slider
                 value={[fontSize]}
                 onValueChange={(value) => setFontSize(value[0])}
@@ -73,7 +74,7 @@ export function BookReader({ book }: { book: Book }) {
             size="icon"
           >
             <MessageSquarePlus className="h-8 w-8" />
-            <span className="sr-only">Open Chatbot</span>
+            <span className="sr-only">Abrir Chatbot</span>
           </Button>
         </SheetTrigger>
         <SheetContent
@@ -82,10 +83,10 @@ export function BookReader({ book }: { book: Book }) {
         >
           <SheetHeader className="border-b p-4">
             <SheetTitle className="font-headline text-2xl font-bold text-center">
-              LectorIA Chat
+              Chat de LectorIA
             </SheetTitle>
             <SheetDescription className="text-center">
-              Your study partner for "{book.title}"
+              Tu compañero de estudio para "{book.title}"
             </SheetDescription>
           </SheetHeader>
           <Chatbot bookContent={book.content} bookTitle={book.title} />
