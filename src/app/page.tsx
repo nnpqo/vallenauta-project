@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <section className="mb-12">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold mb-2 text-center">
-          Welcome to LectorIA
+        <h1 className="font-headline text-4xl md:text-5xl font-bold mb-2 text-center text-primary">
+          Unlock Your Next Read
         </h1>
-        <p className="text-muted-foreground text-lg md:text-xl text-center">
-          Your personal AI-powered reading companion.
+        <p className="text-muted-foreground text-lg md:text-xl text-center max-w-2xl mx-auto">
+          Discover, read, and learn with your AI-powered companion. Explore our library or add your own books.
         </p>
       </section>
 

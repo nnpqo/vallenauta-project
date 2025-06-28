@@ -6,4 +6,5 @@ export interface Book {
   coverImage: string;
   coverImageHint: string;
   content: string;
+  inLibrary?: boolean;
 }

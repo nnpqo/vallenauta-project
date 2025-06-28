@@ -2,9 +2,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Award, BookHeart } from 'lucide-react';
+import { Award, BookHeart, Library } from 'lucide-react';
 import { useContext } from 'react';
 import { RewardsContext } from '@/context/RewardsContext';
+import { Button } from '@/components/ui/button';
 
 export function AppHeader() {
   const rewards = useContext(RewardsContext);
@@ -17,7 +18,13 @@ export function AppHeader() {
           <span className="font-headline text-2xl font-bold">LectorIA</span>
         </Link>
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1">
+          <nav className="flex items-center space-x-2">
+            <Button variant="ghost" asChild>
+              <Link href="/my-library">
+                <Library className="h-5 w-5" />
+                <span className="hidden sm:inline-block ml-2">My Library</span>
+              </Link>
+            </Button>
             <div className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium">
               <Award className="h-5 w-5 text-accent" />
               <span>{rewards?.score ?? 0} Points</span>
