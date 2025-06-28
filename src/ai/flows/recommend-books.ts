@@ -18,10 +18,15 @@ const RecommendBooksInputSchema = z.object({
 });
 export type RecommendBooksInput = z.infer<typeof RecommendBooksInputSchema>;
 
+const RecommendedBookSchema = z.object({
+  title: z.string().describe('El título del libro recomendado.'),
+  author: z.string().describe('El autor del libro recomendado.'),
+});
+
 const RecommendBooksOutputSchema = z.object({
   recommendations: z
-    .string()
-    .describe('Una lista de libros recomendados basada en el historial de lectura.'),
+    .array(RecommendedBookSchema)
+    .describe('Una lista de hasta 3 libros recomendados basada en el historial de lectura.'),
 });
 export type RecommendBooksOutput = z.infer<typeof RecommendBooksOutputSchema>;
 
@@ -33,11 +38,11 @@ const prompt = ai.definePrompt({
   name: 'recommendBooksPrompt',
   input: {schema: RecommendBooksInputSchema},
   output: {schema: RecommendBooksOutputSchema},
-  prompt: `Basado en el historial de lectura del usuario, recomienda algunos libros que podría disfrutar.
+  prompt: `Eres un experto bibliotecario. Basado en el historial de lectura del usuario, recomienda hasta 3 libros que podría disfrutar.
+Devuelve las recomendaciones como un array JSON de objetos, donde cada objeto tiene las claves "title" y "author".
 
 Historial de lectura: {{{readingHistory}}}
-
-Recomendaciones:`, 
+`,
 });
 
 const recommendBooksFlow = ai.defineFlow(
