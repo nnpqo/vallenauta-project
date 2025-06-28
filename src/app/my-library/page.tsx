@@ -26,7 +26,7 @@ export default function MyLibraryPage() {
   );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newBook, setNewBook] = useState({ title: '', author: '' });
-
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
  const handleAddBook = async (e: React.FormEvent) => {
   e.preventDefault();
   if (!newBook.title || !newBook.author) return;
@@ -126,7 +126,12 @@ export default function MyLibraryPage() {
                             <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Haz clic para subir</span> o arrastra y suelta</p>
                             <p className="text-xs text-muted-foreground">PDF (MAX. 5MB)</p>
                         </div>
-                        <Input id="pdf" type="file" className="hidden" />
+                        <Input id="pdf" type="file" className="hidden" 
+                        onChange={(e) => {
+                          const file = e.target.files?.[0] || null;
+                          setPdfFile(file);
+                        }}
+                        />
                     </Label>
                 </div> 
               </div>
