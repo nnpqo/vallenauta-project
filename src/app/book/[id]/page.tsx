@@ -1,25 +1,37 @@
+ 'use client';
 
-import { notFound } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { BookReader } from '@/components/BookReader';
-import { books } from '@/lib/data';
 import type { Book } from '@/lib/types';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export async function generateStaticParams() {
-  return books.map((book) => ({
-    id: book.id,
-  }));
-}
+export default function BookPage() {
+  const { id } = useParams(); 
+  const [book, setBook] = useState<Book | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-function getBook(id: string): Book | undefined {
-  return books.find((book) => book.id === id);
-}
+  useEffect(() => {
+    if (!id || typeof id !== 'string') return;
 
-export default function BookPage({ params }: { params: { id: string } }) {
-  const book = getBook(params.id);
+    const fetchBook = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/api/book/${id}`);
+        setBook(response.data);
+      } catch (err) {
+        console.error('Error al obtener el libro:', err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!book) {
-    notFound();
-  }
+    fetchBook();
+  }, [id]);
+
+  if (loading) return <p>Cargando libro...</p>;
+  if (error || !book) return <p>No se pudo cargar el libro.</p>;
 
   return <BookReader book={book} />;
 }

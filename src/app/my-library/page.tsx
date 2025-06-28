@@ -18,6 +18,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PlusCircle, UploadCloud } from 'lucide-react';
+import axios from 'axios';
 
 export default function MyLibraryPage() {
   const [myBooks, setMyBooks] = useState<Book[]>(
@@ -26,23 +27,27 @@ export default function MyLibraryPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newBook, setNewBook] = useState({ title: '', author: '' });
 
-  const handleAddBook = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newBook.title && newBook.author) {
-      const createdBook: Book = {
-        id: newBook.title.toLowerCase().replace(/\s/g, '-'),
-        title: newBook.title,
-        author: newBook.author,
-        coverImage: 'https://placehold.co/400x600.png',
-        coverImageHint: 'portada libro personalizado',
-        content: `Este es un libro personalizado añadido por ti. El contenido no está disponible para los libros subidos.`,
-        inLibrary: true,
-      };
-      setMyBooks((prevBooks) => [...prevBooks, createdBook]);
-      setNewBook({ title: '', author: '' });
-      setIsDialogOpen(false);
-    }
+ const handleAddBook = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!newBook.title || !newBook.author) return;
+
+  let content = 'Contenido no disponible.';
+
+  const createdBook: Book = {
+    id: '0', // se reemplazará por el backend
+    title: newBook.title,
+    author: newBook.author,
+    coverImage: '/images/portada libro.webp',
+    content: "holas cmo esta todo",
   };
+
+  await axios.post('http://localhost:4000/api/book', createdBook);
+
+  setMyBooks((prev) => [...prev, createdBook]);
+  setNewBook({ title: '', author: '' });
+  setIsDialogOpen(false);
+  //setPdfFile(null);
+};
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -113,7 +118,7 @@ export default function MyLibraryPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pdf">Subir PDF (Opcional)</Label>
+                <Label htmlFor="pdf">Subir PDF </Label>
                 <div className="relative flex items-center justify-center w-full">
                     <Label htmlFor="pdf" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-secondary hover:bg-muted">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
