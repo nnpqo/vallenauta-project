@@ -3,10 +3,10 @@
 
 import { useEffect, useState } from 'react';
 import { getRecommendations } from '@/lib/actions';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent } from './ui/card';
 import { Skeleton } from './ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { Lightbulb } from 'lucide-react';
+import { Wand2 } from 'lucide-react';
 
 export default function BookRecommendations() {
   const [recommendations, setRecommendations] = useState<string[]>([]);
@@ -36,16 +36,16 @@ export default function BookRecommendations() {
 
   return (
     <div>
-      <h2 className="font-headline text-3xl font-bold mb-6 border-b pb-2">
-        Recomendado Para Ti
+      <h2 className="text-3xl font-bold tracking-tight mb-6">
+        Recomendaciones Mágicas Para Ti
       </h2>
-      <Card className="bg-secondary/50 border-dashed">
+      <Card className="bg-card/50">
         <CardContent className="p-6">
           {isLoading && (
-            <div className="space-y-3">
-              <Skeleton className="h-5 w-3/4" />
-              <Skeleton className="h-5 w-1/2" />
-              <Skeleton className="h-5 w-2/3" />
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-3/4 rounded-full" />
+              <Skeleton className="h-5 w-1/2 rounded-full" />
+              <Skeleton className="h-5 w-2/3 rounded-full" />
             </div>
           )}
           {error && (
@@ -55,11 +55,13 @@ export default function BookRecommendations() {
             </Alert>
           )}
           {!isLoading && !error && recommendations.length > 0 && (
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {recommendations.map((rec, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <Lightbulb className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                  <p className="text-foreground/90">{rec}</p>
+                  <div className="p-1 bg-primary/10 rounded-full">
+                    <Wand2 className="h-5 w-5 text-primary flex-shrink-0" />
+                  </div>
+                  <p className="text-foreground/90 pt-1">{rec}</p>
                 </li>
               ))}
             </ul>

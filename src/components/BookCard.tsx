@@ -17,11 +17,11 @@ interface BookCardProps {
 export function BookCard({ book }: BookCardProps) {
   return (
     <Link href={`/book/${book.id}`} className="group block">
-      <Card className="flex h-full flex-col overflow-hidden transition-all duration-200 ease-in-out group-hover:shadow-lg group-hover:-translate-y-1">
+      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-2 border-transparent hover:border-primary">
         <CardHeader className="p-0">
           <Image
             src={book.coverImage}
-            alt={`Cover of ${book.title}`}
+            alt={`Portada de ${book.title}`}
             width={400}
             height={600}
             className="aspect-[2/3] w-full object-cover"
@@ -29,7 +29,7 @@ export function BookCard({ book }: BookCardProps) {
           />
         </CardHeader>
         <CardContent className="p-4 flex-grow">
-          <CardTitle className="font-headline text-lg leading-tight">
+          <CardTitle className="text-lg leading-tight font-semibold">
             {book.title}
           </CardTitle>
         </CardContent>

@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, UploadCloud } from 'lucide-react';
 
 export default function MyLibraryPage() {
   const [myBooks, setMyBooks] = useState<Book[]>(
@@ -48,16 +48,16 @@ export default function MyLibraryPage() {
     <div className="container mx-auto px-4 py-8">
       <section className="mb-12 flex justify-between items-center flex-wrap gap-4">
         <div>
-          <h1 className="font-headline text-4xl md:text-5xl font-bold mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter mb-2">
             Mi Biblioteca
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl">
+          <p className="text-muted-foreground text-lg">
             Tu colección personal de libros.
           </p>
         </div>
-        <Button onClick={() => setIsDialogOpen(true)}>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Añadir Libro
+        <Button onClick={() => setIsDialogOpen(true)} size="lg">
+          <PlusCircle />
+          <span>Añadir Libro</span>
         </Button>
       </section>
 
@@ -69,57 +69,62 @@ export default function MyLibraryPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 border-dashed border-2 rounded-lg bg-secondary/50">
-            <h2 className="text-2xl font-semibold mb-2">Tu biblioteca está vacía.</h2>
-            <p className="text-muted-foreground mb-4">Añade un libro para empezar.</p>
-            <Button onClick={() => setIsDialogOpen(true)}>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                Añade Tu Primer Libro
+          <div className="text-center py-20 border-dashed border-2 rounded-lg bg-secondary/50 flex flex-col items-center">
+            <h2 className="text-2xl font-bold mb-2">Tu biblioteca está vacía</h2>
+            <p className="text-muted-foreground mb-6 max-w-sm">
+              Empieza añadiendo tu primer libro para leer y analizar con LectorIA.
+            </p>
+            <Button onClick={() => setIsDialogOpen(true)} size="lg">
+              <PlusCircle />
+              <span>Añadir Tu Primer Libro</span>
             </Button>
           </div>
         )}
       </section>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[480px]">
           <DialogHeader>
-            <DialogTitle>Añadir un Nuevo Libro</DialogTitle>
+            <DialogTitle>Añadir Nuevo Libro</DialogTitle>
             <DialogDescription>
-              Sube un PDF o introduce los detalles de tu libro. El libro se añadirá a tu biblioteca personal.
+              Introduce los detalles de tu libro. Podrás analizarlo con la IA.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleAddBook}>
             <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="title" className="text-right">
-                        Título
+              <div className="space-y-2">
+                <Label htmlFor="title">Título</Label>
+                <Input
+                  id="title"
+                  value={newBook.title}
+                  onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
+                  placeholder="Orgullo y Prejuicio"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="author">Autor</Label>
+                <Input
+                  id="author"
+                  value={newBook.author}
+                  onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
+                  placeholder="Jane Austen"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="pdf">Subir PDF (Opcional)</Label>
+                <div className="relative flex items-center justify-center w-full">
+                    <Label htmlFor="pdf" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-secondary hover:bg-muted">
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <UploadCloud className="w-8 h-8 mb-4 text-muted-foreground" />
+                            <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Haz clic para subir</span> o arrastra y suelta</p>
+                            <p className="text-xs text-muted-foreground">PDF (MAX. 5MB)</p>
+                        </div>
+                        <Input id="pdf" type="file" className="hidden" />
                     </Label>
-                    <Input
-                        id="title"
-                        value={newBook.title}
-                        onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
-                        className="col-span-3"
-                        required
-                    />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="author" className="text-right">
-                        Autor
-                    </Label>
-                    <Input
-                        id="author"
-                        value={newBook.author}
-                        onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
-                        className="col-span-3"
-                        required
-                    />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="pdf" className="text-right">
-                        PDF
-                    </Label>
-                    <Input id="pdf" type="file" className="col-span-3" />
-                </div>
+                </div> 
+              </div>
             </div>
             <DialogFooter>
               <DialogClose asChild>

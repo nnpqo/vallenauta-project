@@ -19,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import { RewardsContext } from '@/context/RewardsContext';
 import { Badge } from '@/context/RewardsContext';
 import { Card, CardContent } from './ui/card';
+import { Avatar, AvatarFallback } from './ui/avatar';
 
 interface ChatbotProps {
   bookContent: string;
@@ -151,9 +152,11 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
               }`}
             >
               {message.role === 'assistant' && (
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Bot className="h-5 w-5" />
-                </div>
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback className="bg-primary text-primary-foreground">
+                    <Bot className="h-5 w-5" />
+                  </AvatarFallback>
+                </Avatar>
               )}
               {message.role === 'system' ? (
                 <div className="w-full text-center text-sm text-muted-foreground italic">
@@ -161,9 +164,9 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
                 </div>
               ) : (
                 <div
-                  className={`max-w-md rounded-lg px-4 py-2 ${
+                  className={`max-w-md rounded-lg px-4 py-3 shadow-sm ${
                     message.role === 'user'
-                      ? 'bg-accent text-accent-foreground'
+                      ? 'bg-primary text-primary-foreground'
                       : 'bg-secondary'
                   }`}
                 >
@@ -171,30 +174,35 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
                 </div>
               )}
               {message.role === 'user' && (
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                  <User className="h-5 w-5" />
-                </div>
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback className="bg-secondary text-secondary-foreground">
+                    <User className="h-5 w-5" />
+                  </AvatarFallback>
+                </Avatar>
               )}
             </div>
           ))}
           {isLoading && (
             <div className="flex items-start gap-3">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                <Loader2 className="h-5 w-5 animate-spin" />
-              </div>
-              <div className="max-w-md rounded-lg bg-secondary px-4 py-2">
+              <Avatar className="h-8 w-8">
+                  <AvatarFallback className="bg-primary text-primary-foreground">
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  </AvatarFallback>
+                </Avatar>
+              <div className="max-w-md rounded-lg bg-secondary px-4 py-3 shadow-sm">
                 Pensando...
               </div>
             </div>
           )}
         </div>
       </ScrollArea>
-      <div className="border-t p-4">
-        <div className="mb-2 flex justify-center gap-2">
+      <div className="border-t p-4 bg-background">
+        <div className="mb-4 flex justify-center gap-2">
           <Button
             variant="outline"
             onClick={handleQuizRequest}
             disabled={isLoading}
+            className="rounded-full"
           >
             <Sparkles className="mr-2 h-4 w-4" />
             Ponme a Prueba
@@ -206,9 +214,10 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Haz una pregunta sobre el libro..."
             disabled={isLoading}
+            className="rounded-full h-11 px-5"
           />
-          <Button type="submit" disabled={isLoading}>
-            <Send className="h-4 w-4" />
+          <Button type="submit" disabled={isLoading} className="rounded-full" size="icon">
+            <Send className="h-5 w-5" />
           </Button>
         </form>
       </div>
@@ -233,12 +242,12 @@ function QuizCard({
   };
 
   return (
-    <Card className="border-primary border-2">
+    <Card className="border-primary/50 border-2 bg-primary/5">
       <CardContent className="p-4">
-        <p className="font-bold mb-2">¡Hora del Cuestionario!</p>
+        <p className="font-bold mb-2 text-primary">¡Hora del Cuestionario!</p>
         <p className="mb-4">{question}</p>
         {!isRevealed ? (
-          <Button onClick={handleReveal}>
+          <Button onClick={handleReveal} className="w-full">
             <Award className="mr-2 h-4 w-4" />
             Revelar Respuesta y Obtener 10 Puntos
           </Button>

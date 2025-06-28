@@ -5,16 +5,18 @@ import { useState } from 'react';
 import type { Book } from '@/lib/types';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, MessageSquarePlus } from 'lucide-react';
+import { Sun, Moon, MessageSquarePlus, Settings } from 'lucide-react';
 import { Chatbot } from './Chatbot';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
   SheetDescription,
 } from '@/components/ui/sheet';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Label } from './ui/label';
+import { DialogTitle } from '@radix-ui/react-dialog';
 
 export function BookReader({ book }: { book: Book }) {
   const [fontSize, setFontSize] = useState(18);
@@ -36,31 +38,58 @@ export function BookReader({ book }: { book: Book }) {
       className={`relative min-h-full transition-colors duration-300 ${themeColors}`}
     >
       <div className="container mx-auto max-w-4xl px-4 py-8">
-        <header className="mb-8 border-b pb-4">
-          <h1 className="font-headline text-4xl font-bold">{book.title}</h1>
-          <p className="text-lg text-muted-foreground">{book.author}</p>
-          <div className="mt-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4 w-1/2 md:w-1/3">
-              <span className="text-sm">Tamaño de Fuente</span>
-              <Slider
-                value={[fontSize]}
-                onValueChange={(value) => setFontSize(value[0])}
-                min={12}
-                max={32}
-                step={1}
-              />
-            </div>
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {theme === 'light' ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
+        <header className="mb-8 border-b pb-4 flex justify-between items-center">
+          <div>
+            <h1 className="font-headline text-4xl font-bold tracking-tight">{book.title}</h1>
+            <p className="text-lg text-muted-foreground">{book.author}</p>
           </div>
+          
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Settings className="h-5 w-5" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium leading-none">Ajustes de Lectura</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Personaliza tu experiencia de lectura.
+                  </p>
+                </div>
+                <div className="grid gap-2">
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label>Tema</Label>
+                    <div className="col-span-2 flex justify-end">
+                      <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                        {theme === 'light' ? (
+                          <Moon className="h-5 w-5" />
+                        ) : (
+                          <Sun className="h-5 w-5" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="fontSize">Fuente</Label>
+                    <Slider
+                      id="fontSize"
+                      value={[fontSize]}
+                      onValueChange={(value) => setFontSize(value[0])}
+                      min={12}
+                      max={32}
+                      step={1}
+                      className="col-span-2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
         </header>
         <article
-          className="prose prose-lg dark:prose-invert max-w-none whitespace-pre-wrap"
+          className="prose prose-lg dark:prose-invert max-w-none whitespace-pre-wrap font-body"
           style={{ fontSize: `${fontSize}px` }}
         >
           {book.content}
@@ -70,7 +99,7 @@ export function BookReader({ book }: { book: Book }) {
       <Sheet>
         <SheetTrigger asChild>
           <Button
-            className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg bg-accent hover:bg-accent/90 text-accent-foreground"
+            className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground"
             size="icon"
           >
             <MessageSquarePlus className="h-8 w-8" />
@@ -79,16 +108,14 @@ export function BookReader({ book }: { book: Book }) {
         </SheetTrigger>
         <SheetContent
           side="bottom"
-          className="h-full flex flex-col p-0 md:h-[85vh]"
+          className="h-full flex flex-col p-0 md:h-[85vh] rounded-t-2xl"
         >
-          <SheetHeader className="border-b p-4">
-            <SheetTitle className="font-headline text-2xl font-bold text-center">
-              Chat de LectorIA
-            </SheetTitle>
-            <SheetDescription className="text-center">
-              Tu compañero de estudio para "{book.title}"
-            </SheetDescription>
-          </SheetHeader>
+            <SheetHeader className="border-b p-4 text-center">
+              <DialogTitle>Chat de LectorIA</DialogTitle>
+              <SheetDescription>
+                Tu compañero de estudio para "{book.title}"
+              </SheetDescription>
+            </SheetHeader>
           <Chatbot bookContent={book.content} bookTitle={book.title} />
         </SheetContent>
       </Sheet>
