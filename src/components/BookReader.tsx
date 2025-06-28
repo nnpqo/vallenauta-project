@@ -5,7 +5,7 @@ import { useState } from 'react';
 import type { Book } from '@/lib/types';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, MessageSquarePlus, Settings } from 'lucide-react';
+import { MessageSquarePlus, Settings } from 'lucide-react';
 import { Chatbot } from './Chatbot';
 import {
   Sheet,
@@ -20,22 +20,10 @@ import { DialogTitle } from '@radix-ui/react-dialog';
 
 export function BookReader({ book }: { book: Book }) {
   const [fontSize, setFontSize] = useState(18);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  };
-
-  const themeColors =
-    theme === 'light'
-      ? 'bg-background text-foreground'
-      : 'bg-foreground text-background';
 
   return (
     <div
-      className={`relative min-h-full transition-colors duration-300 ${themeColors}`}
+      className={`relative min-h-full transition-colors duration-300`}
     >
       <div className="container mx-auto max-w-4xl px-4 py-8">
         <header className="mb-8 border-b pb-4 flex justify-between items-center">
@@ -59,18 +47,6 @@ export function BookReader({ book }: { book: Book }) {
                   </p>
                 </div>
                 <div className="grid gap-2">
-                  <div className="grid grid-cols-3 items-center gap-4">
-                    <Label>Tema</Label>
-                    <div className="col-span-2 flex justify-end">
-                      <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                        {theme === 'light' ? (
-                          <Moon className="h-5 w-5" />
-                        ) : (
-                          <Sun className="h-5 w-5" />
-                        )}
-                      </Button>
-                    </div>
-                  </div>
                   <div className="grid grid-cols-3 items-center gap-4">
                     <Label htmlFor="fontSize">Fuente</Label>
                     <Slider
