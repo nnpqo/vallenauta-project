@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -7,7 +6,14 @@ import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
 import { Sun, Moon, MessageSquarePlus } from 'lucide-react';
 import { Chatbot } from './Chatbot';
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 export function BookReader({ book }: { book: Book }) {
   const [fontSize, setFontSize] = useState(18);
@@ -70,7 +76,18 @@ export function BookReader({ book }: { book: Book }) {
             <span className="sr-only">Open Chatbot</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="bottom" className="h-full md:h-[85vh]">
+        <SheetContent
+          side="bottom"
+          className="h-full flex flex-col p-0 md:h-[85vh]"
+        >
+          <SheetHeader className="border-b p-4">
+            <SheetTitle className="font-headline text-2xl font-bold text-center">
+              LectorIA Chat
+            </SheetTitle>
+            <SheetDescription className="text-center">
+              Your study partner for "{book.title}"
+            </SheetDescription>
+          </SheetHeader>
           <Chatbot bookContent={book.content} bookTitle={book.title} />
         </SheetContent>
       </Sheet>

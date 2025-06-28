@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, useEffect, useContext } from 'react';
@@ -141,14 +140,6 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
 
   return (
     <div className="flex h-full flex-col bg-background text-foreground">
-      <header className="border-b p-4">
-        <h2 className="font-headline text-2xl font-bold text-center">
-          LectorIA Chat
-        </h2>
-        <p className="text-center text-sm text-muted-foreground">
-          Your study partner for "{bookTitle}"
-        </p>
-      </header>
       <ScrollArea className="flex-grow p-4" ref={scrollAreaRef}>
         <div className="space-y-4">
           {messages.map((message) => (
