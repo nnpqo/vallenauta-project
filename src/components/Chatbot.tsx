@@ -70,6 +70,7 @@ export function Chatbot({ bookContent, bookTitle }: ChatbotProps) {
       role: 'user',
       content: input,
     };
+    
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);

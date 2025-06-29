@@ -20,6 +20,7 @@ import { Label } from '@/components/ui/label';
 import { PlusCircle, UploadCloud } from 'lucide-react';
 import axios from 'axios';
 
+
 export default function MyLibraryPage() {
   const [myBooks, setMyBooks] = useState<Book[]>(
     initialBooks.filter((b) => b.inLibrary)
@@ -31,22 +32,29 @@ export default function MyLibraryPage() {
   e.preventDefault();
   if (!newBook.title || !newBook.author) return;
 
-  let content = 'Contenido no disponible.';
+  let content = 'Contenido no disponible';
+
+  if (pdfFile) {
+    const arrayBuffer = await pdfFile.arrayBuffer();
+    
+    let text = '';
+    content = text;
+  }
 
   const createdBook: Book = {
-    id: '0', // se reemplazará por el backend
+    id: '0',
     title: newBook.title,
     author: newBook.author,
     coverImage: '/images/portada libro.webp',
-    content: "holas cmo esta todo",
+    content, // ahora sí es el texto del PDF
   };
 
   await axios.post('http://localhost:4000/api/book', createdBook);
 
   setMyBooks((prev) => [...prev, createdBook]);
   setNewBook({ title: '', author: '' });
+  setPdfFile(null);
   setIsDialogOpen(false);
-  //setPdfFile(null);
 };
 
   return (

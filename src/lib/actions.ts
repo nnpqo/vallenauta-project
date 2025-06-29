@@ -1,32 +1,42 @@
 
 'use server';
 
-import { bookQuestionAnswering } from '@/ai/flows/book-question-answering';
-import { generateQuizzes } from '@/ai/flows/generate-quizzes';
+import axios from 'axios';
 import { recommendBooks } from '@/ai/flows/recommend-books';
 
-export async function getAnswerForBook(bookContent: string, question: string) {
+const OLLAMA_API_URL = 'http://localhost:4000/ia/ollama/';
+
+export async function getAnswerForBook(bookContent: string, userPrompt: string) {
   try {
-    const { answer } = await bookQuestionAnswering({ bookContent, question });
-    return { success: true, answer };
-  } catch (error) {
-    console.error('Error answering book question:', error);
+    const response = await axios.post(OLLAMA_API_URL, {
+      prompt: `${bookContent}\n\n${userPrompt}`,
+    });
+
+    return { success: true, answer: response.data.response };
+  } catch (error: any) {
+    console.error('Error en getAnswerForBook:', error);
     return {
       success: false,
-      error: 'Lo siento, tuve problemas para encontrar una respuesta. Por favor, inténtalo de nuevo.',
+      error: error.response?.data?.message || 'Error inesperado al conectar con la IA',
     };
   }
 }
 
-export async function getQuizQuestions(bookContent: string, topic?: string) {
+export async function getQuizQuestions(bookContent: string) {
   try {
-    const { quizzes } = await generateQuizzes({ bookContent, topic });
-    return { success: true, questions: quizzes };
-  } catch (error) {
-    console.error('Error generating quiz:', error);
+    const response = await axios.post(OLLAMA_API_URL, {
+      prompt: `Genera una pregunta de opción abierta para evaluar comprensión lectora del siguiente contenido:\n\n${bookContent}`,
+    });
+
+    return {
+      success: true,
+      questions: [response.data.response], // puedes parsear más si es JSON
+    };
+  } catch (error: any) {
+    console.error('Error en getQuizQuestions:', error);
     return {
       success: false,
-      error: 'Lo siento, tuve problemas para crear un cuestionario. Por favor, inténtalo de nuevo.',
+      error: error.response?.data?.message || 'Error al generar preguntas',
     };
   }
 }

@@ -7,3 +7,4 @@ export interface Book {
   content: string;
   inLibrary?: boolean;
 }
+
